@@ -1,0 +1,10 @@
+bin/
+obj/
+*.user
+paket.exe
+packages/
+.DS_Store
+node_modules/
+npm-debug.log
+*.userprefs
+build/
