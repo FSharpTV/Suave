@@ -1,10 +1,7 @@
 ﻿module Program
 
-open Suave
-open Suave.Http
 
 [<EntryPoint>]
-let main argv = 
-    printfn "%A" argv
-    0 // return an integer exit code
-
+let main argv =
+  // change the below to point to the module of your choise!
+  ``Introducing routing and applicatives``.main argv

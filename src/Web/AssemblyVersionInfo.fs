@@ -6,8 +6,8 @@ open System.Runtime.InteropServices
 [<assembly: AssemblyConfiguration("Release")>]
 [<assembly: AssemblyCompany("Your Company")>]
 [<assembly: AssemblyCopyright("(c) 2015 by Yourself!")>]
-[<assembly: AssemblyVersion("0.0.0.0")>]
-[<assembly: AssemblyFileVersion("0.0.0.0")>]
-[<assembly: AssemblyInformationalVersion("0.0.0.000000")>]
+[<assembly: AssemblyVersion("0.1.0.0")>]
+[<assembly: AssemblyFileVersion("0.1.0.0")>]
+[<assembly: AssemblyInformationalVersion("0.1.0.ad6eb7")>]
 [<assembly: AssemblyTitle("Web")>]
 ()

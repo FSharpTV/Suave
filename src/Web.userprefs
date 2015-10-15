@@ -1,8 +1,8 @@
 ﻿<Properties StartupItem="Web/Web.fsproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|AnyCPU" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Web/Program.fs">
     <Files>
-      <File FileName="Web/Program.fs" Line="3" Column="6" />
+      <File FileName="Web/Program.fs" Line="11" Column="5" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
