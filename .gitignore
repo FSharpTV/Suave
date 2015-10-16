@@ -9,3 +9,4 @@ npm-debug.log
 *.userprefs
 build/
 *.userprefs
+AssemblyVersionInfo.fs
