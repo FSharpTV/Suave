@@ -67,6 +67,9 @@
     <None Include="paket.references" />
     <None Include="templates\index.liquid" />
     <None Include="templates\image-of-the-day.liquid" />
+    <None Include="cats\descriptions.tsv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\..\Microsoft SDKs\F#\3.1\Framework\v4.0\Microsoft.FSharp.Targets" />
   <Choose>
