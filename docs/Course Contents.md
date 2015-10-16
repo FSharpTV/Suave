@@ -149,7 +149,8 @@ If you want a quick primer, have a browse through [Suave.Http.fsi](https://githu
 
 A little later
 
-```                                                                         ➜  06-Web git:(master) ✗ curl http://127.0.0.1:8083/stale
+```
+➜  06-Web git:(master) ✗ curl http://127.0.0.1:8083/stale
 2015-10-16T12:14:08.3246040+00:00
 ```
 
@@ -167,4 +168,40 @@ A little later
 2015-10-16T12:14:43.4012830+00:00
 ```
 
-# 
+# Using a server side template
+
+Follow the code
+
+# Developing with JavaScript
+
+In the last chapter you got an introduction to what it's like to do server-side templating. While doing server-side templating is a stable, common pattern, more and more web developers are starting to use NPM and write JS-only web sites that interact with an API.
+
+Let's have a look at some pros and cons. In favor of server-side templating:
+
+ - Renders fast in the browser
+ - Good for SEO, but this is beginning to change
+ - If you have back- vs front-end developers then your backend developers easily do this work
+ - It's a known model
+ - You can hide your API from outsiders
+
+In favor of client-side templating and single-page apps:
+
+ - Browsers are very fast at executing JS nowadays
+ - Doing request-reply on every page interaction is slower than letting JS show the change and wait for the API to return OK behind the scenes, which may lead to a better user experience
+ - Your API is clearly deliniated and can be published for others to consume
+ - You get access to a wider community of people who make things; the JS community is very large
+ - You're going to have to write JS to some extent anyway, so why not make the client-side bits all-JS?
+ - You can use a modern JS compiler infrastructure like WebPack and Babel
+ - If you want to package the site as an offline application later, it's easier
+
+In this course we're going to show how to use WebPack and Babel.
+
+Have a look in `src/public`.
+
+
+
+# Writing client-side JavaScript apps
+
+Now that we know what WebPack looks like, let's have a look at how to write Hello World in ReactJS, which is the chosen client-side technology for this course.
+
+

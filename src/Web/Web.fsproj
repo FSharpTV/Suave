@@ -55,21 +55,22 @@
     <Content Include="cats\5.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="cats\descriptions.tsv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
+    <None Include="templates\index.liquid" />
+    <None Include="templates\image-of-the-day.liquid" />
     <Compile Include="AssemblyVersionInfo.fs" />
     <Compile Include="001-HelloWorld.fs" />
     <Compile Include="002-Files.fs" />
     <Compile Include="003-Routing.fs" />
     <Compile Include="004-Lazy.fs" />
     <Compile Include="005-Templating.fs" />
+    <Compile Include="006-API.fs" />
     <Compile Include="Program.fs" />
     <None Include="paket.references" />
-    <None Include="templates\index.liquid" />
-    <None Include="templates\image-of-the-day.liquid" />
-    <None Include="cats\descriptions.tsv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\..\Microsoft SDKs\F#\3.1\Framework\v4.0\Microsoft.FSharp.Targets" />
   <Choose>
