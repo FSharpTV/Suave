@@ -1,14 +1,8 @@
 ﻿<Properties StartupItem="Web/Web.fsproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|AnyCPU" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Web/Program.fs">
-    <Files>
-      <File FileName="Web/Program.fs" Line="11" Column="5" />
-    </Files>
-  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Users/h/dev/haf/06-Web/src/Web/Program.fs" line="11" column="5" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

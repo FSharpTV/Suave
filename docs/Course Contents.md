@@ -137,3 +137,32 @@ As such, you can re-use your existing HTTP knowledge with Suave.
 If you want a quick primer, have a browse through [Suave.Http.fsi](https://github.com/SuaveIO/suave/blob/master/src/Suave/Http.fsi) where all the documentation is laid out in the code.
 
 # Introducing Routing and Applicatives
+
+# Lazy
+
+## /stale
+
+```
+➜  06-Web git:(master) ✗ curl http://127.0.0.1:8083/stale
+2015-10-16T12:14:08.3246040+00:00       
+```
+
+A little later
+
+```                                                                         ➜  06-Web git:(master) ✗ curl http://127.0.0.1:8083/stale
+2015-10-16T12:14:08.3246040+00:00
+```
+
+## /fresh
+
+```
+➜  06-Web git:(master) ✗ curl http://127.0.0.1:8083/fresh
+2015-10-16T12:14:25.8878250+00:00
+```
+
+A little later
+
+```
+➜  06-Web git:(master) ✗ curl http://127.0.0.1:8083/fresh
+2015-10-16T12:14:43.4012830+00:00
+```
