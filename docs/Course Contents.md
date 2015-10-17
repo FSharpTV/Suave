@@ -196,12 +196,18 @@ In favor of client-side templating and single-page apps:
 
 In this course we're going to show how to use WebPack and Babel.
 
-Have a look in `src/public`.
-
-
+Have a look in `src/public/`.
 
 # Writing client-side JavaScript apps
 
 Now that we know what WebPack looks like, let's have a look at how to write Hello World in ReactJS, which is the chosen client-side technology for this course.
 
+If you run 'foreman start' in the root, a ruby process will start which in turn will keep track of both `npm` and `suave` at the same time:
 
+![Foreman Start](6.js.foreman.png)
+
+You'll also get helpful JS lint errors, parse errors and other hints that makes it easier to do JS development.
+
+Hello world component
+
+Stub your data

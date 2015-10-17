@@ -22,6 +22,7 @@ let filesInHome : WebPart =
 
 // you can easily read the list of files in your browser:
 let catDir = Path.Combine(rootPath, "cats")
+
 // printfn "Cat dir: %s" catDir
 let allCats = Files.dir catDir
 
