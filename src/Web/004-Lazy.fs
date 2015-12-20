@@ -1,14 +1,11 @@
 module ``Understanding eager and lazy evaluation``
 
-open Suave
-open Suave.Types
-open Suave.Web
-open Suave.Http
-open Suave.Http.Successful
-open Suave.Http.Applicatives
-open Suave.Http.RequestErrors
-
 open System
+open Suave
+open Suave.Successful
+open Suave.Filters
+open Suave.RequestErrors
+open Suave.Operators
 
 let stale = OK (sprintf "%s" (DateTimeOffset.UtcNow.ToString("o")))
 
@@ -26,9 +23,9 @@ let main argv =
   // evaluating the choose applicative before passing the WebPart
   // into startWebServer.
   startWebServer defaultConfig <| choose [
-    path "/fresh" >>= fresh // always new date responded with
+    path "/fresh" >=> fresh // always new date responded with
 
-    path "/stale" >>= stale // always same date responded with
+    path "/stale" >=> stale // always same date responded with
 
     NOT_FOUND "Either request /fresh or /stale."
   ]

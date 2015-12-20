@@ -12,14 +12,12 @@ let rootPath =
 
 open System
 open Suave
-open Suave.Types
-open Suave.Web
-open Suave.Http
-open Suave.Http.Successful
-open Suave.Http.Applicatives
-open Suave.Http.RequestErrors
+open Suave.Successful
+open Suave.Filters
+open Suave.RequestErrors
 open Suave.DotLiquid
 open Suave.Utils // for ThreadSafeRandom
+open Suave.Operators
 
 DotLiquid.setTemplatesDir (__SOURCE_DIRECTORY__ + "/templates")
 
@@ -46,7 +44,9 @@ let pictureOfTheDay =
     |> Array.map (fun s -> s.Split('\t'))
     // transform the array of two items into a F# tuple; we know its
     // two-values-shape, so ignore the warning:
-    |> Array.map (fun [| fileName; description |] -> fileName, description)
+    |> Array.map (function
+      | [| fileName; description; _ |] -> fileName, description
+      | _ -> failwith "data received is not matching expectation of descriptions.tsv")
     // do something of the sequence of FileName * Description
     |> fun values -> 
       values |> Array.map fst, // make an array of all file names (not paths)

@@ -12,13 +12,11 @@ let rootPath =
 
 open System
 open Suave
-open Suave.Types
-open Suave.Web
-open Suave.Http
-open Suave.Http.Successful
-open Suave.Http.Applicatives
-open Suave.Http.RequestErrors
+open Suave.Successful
+open Suave.Filters
+open Suave.RequestErrors
 open Suave.Utils
+open Suave.Operators
 
 module QOTD =
 
@@ -32,14 +30,14 @@ module QOTD =
     fun (ctx : HttpContext) ->
       let composed =
         OK quotes.[ThreadSafeRandom.next 0 quotes.Length]
-        >>= Writers.setMimeType "text/plain; charset=utf-8"
+        >=> Writers.setMimeType "text/plain; charset=utf-8"
       composed ctx
 
 
 let api =
   choose [
     // browsing the quote of the day web part:
-    path "/qotf" >>= QOTD.quoteInner
+    path "/qotf" >=> QOTD.quoteInner
 
     // let's see if we can't find the cats also (this time only by their numbers
     // and not with their suffixed (.jpg)-string)

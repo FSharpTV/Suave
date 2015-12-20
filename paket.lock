@@ -4,8 +4,9 @@ NUGET
   specs:
     DotLiquid (1.8.0)
     FSharp.Core (4.0.0.1)
-    Suave (0.32.1)
+    Suave (1.0.0-beta2)
       FSharp.Core (>= 3.1.2.5)
-    Suave.DotLiquid (0.32.1)
+    Suave.DotLiquid (1.0.0-beta2)
       DotLiquid (>= 1.8.0)
-      Suave (>= 0.32.1)
+      FSharp.Core (>= 3.1.2.5)
+      Suave (>= 1.0.0-beta2)

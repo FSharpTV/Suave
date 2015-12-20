@@ -11,10 +11,6 @@ let rootPath =
   |> Path.GetDirectoryName
 
 open Suave
-open Suave.Types
-open Suave.Http
-open Suave.Web
-open Suave.Http.Files
 
 let filesInHome : WebPart =
   // browse the home folder

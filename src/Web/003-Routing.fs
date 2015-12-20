@@ -14,12 +14,10 @@ open ``Browsing for files``
 open ``Creating your first Suave webpage``
 
 open Suave
-open Suave.Types
-open Suave.Web
-open Suave.Http
-open Suave.Http.Applicatives
-open Suave.Http.Successful
-open Suave.Http.RequestErrors
+open Suave.Operators
+open Suave.Filters
+open Suave.Successful
+open Suave.RequestErrors
 
 // type WebPart = HttpContext -> Async<HttpContext option>
 
@@ -29,31 +27,31 @@ let routes : WebPart =
     // >>= means; first try '/hi' and if that matches, try the `hi` from
     // the ``Creating your first Suave webpage`` module (which always succeeds,
     // i.e. returns `Some httpContext`).
-    path "/hi" >>= hi
+    path "/hi" >=> hi
 
-    path "/bye" >>= bye
+    path "/bye" >=> bye
 
-    path "/cute-cat" >>= Files.file (Path.Combine(rootPath, "3.jpg"))
+    path "/cute-cat" >=> Files.file (Path.Combine(rootPath, "3.jpg"))
 
     // path may match, but `never` makes it fail
-    path "/never" >>= never
+    path "/never" >=> never
 
     // this is actually the implementation
-    path "/never-impl" >>= fun ctx -> fail
+    path "/never-impl" >=> fun ctx -> fail
 
     // and `fail = async.Return None`
 
     // you can inspect values from the request using the `request` applicative:
-    path "/tell-me" >>= request (fun r -> OK (sprintf "You requested path: %s" r.url.AbsolutePath))
+    path "/tell-me" >=> request (fun r -> OK (sprintf "You requested path: %s" r.url.AbsolutePath))
 
     // another way to write it (remember the signature of WebPart):
     // and that `val OK : string -> WebPart`.
-    path "/tell-me" >>= request (fun r -> fun httpContext -> async {
+    path "/tell-me" >=> request (fun r -> fun httpContext -> async {
       return! OK (sprintf "You requested path: %s" r.url.AbsolutePath) httpContext
     })
 
     // yet another way, fully expanded (behind the scenes):
-    path "/tell-me" >>= request (fun r -> fun httpContext -> async {
+    path "/tell-me" >=> request (fun r -> fun httpContext -> async {
       let buf = Text.Encoding.UTF8.GetBytes (sprintf "You requested path: %s" r.url.AbsolutePath)
 
       // -> HttpContext option
@@ -77,17 +75,17 @@ let routes : WebPart =
 let userDataAndCallbacks =
   // this will work, because the HttpContext value from `setUserData` is passed
   // alone as long as `Some ctx` is returned
-  path "/callbacks" >>= Writers.setUserData "myKey" "catscatscats" >>= warbler (fun ctx ->
+  path "/callbacks" >=> Writers.setUserData "myKey" "catscatscats" >=> warbler (fun ctx ->
     OK (sprintf "Your key's value is: %s" (ctx.userState |> Map.find "myKey" |> unbox))
   )
 
 let userDataAndCallbacks2 =
   // this will won't work, will crash in `Map.find`.
   choose [
-    path "/callbacks" >>= Writers.setUserData "myKey" "catscatscats" >>= never
+    path "/callbacks" >=> Writers.setUserData "myKey" "catscatscats" >=> never
 
     // choose continues downward:
-    path "/callbacks" >>= warbler (fun ctx ->
+    path "/callbacks" >=> warbler (fun ctx ->
       OK (sprintf "Your key's value is: %s" (ctx.userState |> Map.find "myKey" |> unbox))
     ) // => 500 Internal Server Error: The given key was not present in the dictionary.
   ]
@@ -100,7 +98,7 @@ let userDataAndCallbacks3 : WebPart =
     callback haveSomeCats
 
   choose [
-    path "/callbacks" >>= myApp (fun myValue ->
+    path "/callbacks" >=> myApp (fun myValue ->
       OK (sprintf "Your key's value is: %s" myValue)
     )
   ]

@@ -1,11 +1,7 @@
 ﻿module ``Creating your first Suave webpage``
 
 open Suave
-open Suave.Types
-open Suave.Http
-open Suave.Web
-
-open Suave.Http.Successful
+open Suave.Successful
 
 let hi : WebPart = OK "Hello World"
 
