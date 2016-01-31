@@ -45,8 +45,8 @@ let pictureOfTheDay =
     // transform the array of two items into a F# tuple; we know its
     // two-values-shape, so ignore the warning:
     |> Array.map (function
-      | [| fileName; description; _ |] -> fileName, description
-      | _ -> failwith "data received is not matching expectation of descriptions.tsv")
+      | [| fileName; description |] -> fileName, description
+      | x -> failwithf "data received is not matching expectation of descriptions.tsv: %A" x)
     // do something of the sequence of FileName * Description
     |> fun values -> 
       values |> Array.map fst, // make an array of all file names (not paths)

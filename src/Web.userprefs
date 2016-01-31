@@ -1,6 +1,12 @@
 ﻿<Properties StartupItem="Web/Web.fsproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|AnyCPU" />
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Web/005-Templating.fs">
+    <Files>
+      <File FileName="Web/001-HelloWorld.fs" Line="13" Column="3" />
+      <File FileName="Web/005-Templating.fs" Line="73" Column="3" />
+      <File FileName="Web/Program.fs" Line="8" Column="3" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
