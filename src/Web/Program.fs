@@ -46,6 +46,38 @@ module RoutingModule =
 
       pathScan "/hi/%s" (fun name -> OK (sprintf "Hi, %s!" name))
       pathScan "/bye/%s" (fun name -> OK (sprintf "Good bye, %s!" name))
+
+      never >=> request (fun r -> OK (sprintf "You requested %s" r.url.AbsolutePath))
+
+      path "/test-context" >=> context (fun c ->
+        let state =
+          c.userState
+          |> Map.add "message" (sprintf "You requested (ctx) %s" c.request.url.AbsolutePath |> box)
+        fun ctx -> async.Return(Some { ctx with userState = state })
+      ) >=> warbler (fun ctx -> OK (ctx.userState.["message"] :?> string))
+
+      path "/responses" >=> request (fun r ->
+        fun ctx -> async.Return (Some ctx)
+      )
+      path "/responses2" >=> request (fun r ->
+        fun ctx -> 
+          async {
+            return Some ctx
+          }
+      )
+      path "/responses3" >=> request (fun r ->
+        let bs = System.Text.Encoding.UTF8.GetBytes "Hello"
+        fun ctx -> 
+          async {
+            return Some
+              { ctx with
+                  response =
+                    { ctx.response with
+                        content = Bytes bs } }
+          }
+      )
+
+      RequestErrors.NOT_FOUND "Not found"
     ]
 
 [<EntryPoint>]
