@@ -80,7 +80,24 @@ module RoutingModule =
       RequestErrors.NOT_FOUND "Not found"
     ]
 
+module LazyModule =
+  open System
+  open Suave.Filters
+  open Suave.Successful
+  open Suave.Operators
+
+  let app =
+    choose [
+      path "/eager" >=> OK (sprintf "%O" DateTimeOffset.Now)
+      path "/lazy" >=> context (fun _ -> OK (sprintf "%O" DateTimeOffset.Now))
+
+      path "/challenge" >=> context (fun _ ->
+        let now = DateTimeOffset.Now
+        if now.Second % 2 = 0 then OK "hi" else OK "bye"
+      )
+    ]
+
 [<EntryPoint>]
 let main argv =
-  startWebServer defaultConfig RoutingModule.app
+  startWebServer defaultConfig LazyModule.app
   0
