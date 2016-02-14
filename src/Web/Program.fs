@@ -43,6 +43,9 @@ module RoutingModule =
         sprintf "%i.jpg"
         >> aCat
         >> Files.file)
+
+      pathScan "/hi/%s" (fun name -> OK (sprintf "Hi, %s!" name))
+      pathScan "/bye/%s" (fun name -> OK (sprintf "Good bye, %s!" name))
     ]
 
 [<EntryPoint>]
