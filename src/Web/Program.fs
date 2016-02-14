@@ -97,7 +97,32 @@ module LazyModule =
       )
     ]
 
+module IndexModule =
+  open Suave
+  open Suave.Successful
+  open Suave.RequestErrors
+  open Suave.Operators
+  open Suave.Filters
+
+  let app =
+    choose [
+      GET >=> path "/" >=> Files.browseFileHome "index.html"
+      GET >=> path "/index.html" >=> Files.browseFileHome "index.html"
+      POST >=> request (fun r -> 
+        match r.formData "name" with
+        | Choice1Of2 name when name.Length <> 0 ->
+          OK (sprintf "Got your message, %s" name)
+
+        | Choice1Of2 _ ->
+          BAD_REQUEST "Please provide your name"
+
+        | Choice2Of2 error ->
+          BAD_REQUEST error)
+
+      Writers.setStatus HTTP_404 >=> Files.browseFileHome "not_found.html"
+    ]
+
 [<EntryPoint>]
 let main argv =
-  startWebServer defaultConfig LazyModule.app
+  startWebServer defaultConfig IndexModule.app
   0
